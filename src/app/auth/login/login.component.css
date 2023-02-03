@@ -1,3 +1,7 @@
+#toast-container > div {
+    opacity: 1;
+  }
+
 .login-section{
     margin: 100px;
 }
@@ -11,9 +15,9 @@
     background-color: red;
 }
 
-.login-failed-text{
+.login-failed-text, .register-success-text{
     text-align: center;
-    margin-top: 5px;
+    margin-top: 8px;
     font-weight: bold;    
     color: aliceblue;
 }
