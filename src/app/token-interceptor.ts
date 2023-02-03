@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpErrorResponse, HttpEvent, HttpEventType, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from "@angular/common/http";
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { AuthService } from "./auth/shared/auth.service";
 import { catchError, Observable, throwError, BehaviorSubject, switchMap } from "rxjs";
 import { LoginResponsePayload } from "./auth/login/login-response.payload";
@@ -30,9 +30,7 @@ export class TokenInterceptor implements HttpInterceptor {
         }));
     }
 
-
-    private handleAuthErrors(req: HttpRequest<any>, next: HttpHandler)
-        :Observable<HttpEvent<any>> {
+    private handleAuthErrors(req: HttpRequest<any>, next: HttpHandler):Observable<HttpEvent<any>> {
         if(!this.isTokenRefreshing) {
             this.isTokenRefreshing = true;
             this.refreshTokenSubject.next(null);
