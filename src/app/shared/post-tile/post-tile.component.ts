@@ -14,13 +14,8 @@ export class PostTileComponent implements OnInit{
   faCommentIcon = faComment;
   @Input() posts: PostModel[]; 
   
-  posts$: Array<PostModel> = [];
-  
-  constructor(private postService: PostService, private router: Router) {
-    this.postService.getAllPosts().subscribe(post => {
-      this.posts$ = post;
-    })
-  }
+  constructor(private router: Router) { }
+
   ngOnInit(): void {
   }
 
