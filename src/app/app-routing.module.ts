@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth/auth.guard';
 import { LoginComponent } from './auth/login/login.component';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { UserProfileComponent } from './auth/user-profile/user-profile.component';
@@ -12,11 +13,11 @@ import { ListSubredditsComponent } from './subreddit/list-subreddits/list-subred
 
 const routes: Routes = [
   {path:"", component:HomeComponent},
-  {path:"user-profile/:name", component:UserProfileComponent},
+  {path:"user-profile/:name", component:UserProfileComponent, canActivate: [AuthGuard]},
   {path:"view-post/:id", component:ViewPostComponent},
   {path:"list-subreddits", component:ListSubredditsComponent},
-  {path:"create-post", component:CreatePostComponent},
-  {path:"create-subreddit", component:CreateSubredditComponent},
+  {path:"create-post", component:CreatePostComponent, canActivate: [AuthGuard]},
+  {path:"create-subreddit", component:CreateSubredditComponent, canActivate: [AuthGuard]},
   {path:"sign-up", component:SignUpComponent},
   {path:"login", component:LoginComponent}
 ];

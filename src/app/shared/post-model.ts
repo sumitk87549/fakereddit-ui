@@ -8,4 +8,6 @@ export class PostModel {
     subredditName: string;
     commentCount: number;
     duration: string;
+    upvote: boolean;
+    downvote: boolean;
 }
