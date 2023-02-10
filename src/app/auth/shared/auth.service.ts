@@ -5,11 +5,15 @@ import { map, Observable, tap, throwError } from 'rxjs';
 import { LoginRequestPayload } from '../login/login-request.payload';
 import { LoginResponsePayload } from '../login/login-response.payload';
 import { LocalStorageService } from 'ngx-webstorage';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
+  
+  baseUrl = environment.baseUrl;
   
   @Output() loggedIn: EventEmitter<boolean> = new EventEmitter();
   @Output() username: EventEmitter<string> = new EventEmitter();
@@ -19,7 +23,7 @@ export class AuthService {
     username: this.getUsername
   }
   
-  authUrl = 'http://localhost:8080/api/auth/';
+  authUrl = this.baseUrl + 'api/auth/';
 
   constructor(private httpClient: HttpClient, private localStorage: LocalStorageService) { }
 
@@ -70,7 +74,7 @@ export class AuthService {
   }
 
   logout() {
-    this.httpClient.post('http://localhost:8080/api/auth/logout',this.refreshTokenPayload, {responseType: 'text'}).subscribe(data => {
+    this.httpClient.post(this.baseUrl + 'api/auth/logout',this.refreshTokenPayload, {responseType: 'text'}).subscribe(data => {
       console.log(data);
     }, error => {
       throwError(error);
